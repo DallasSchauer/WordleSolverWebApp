@@ -8,17 +8,17 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/<words>')
+
+@app.route('/play')
+def randomWords():
+    return quordle.play(quordle.PickRandomWords(4))
+
+@app.route('/pickWords/<words>')
 def defineWords(words):
     res = words.split("+")
-
-    ret = ""
-    for n in res:
-        ret += n
-        ret += ", "
-
-    return quordle.play()
+    print("Length: " + str(len(res)))
+    return quordle.play(res)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

@@ -42,9 +42,25 @@ class Quordle:
                 count += 1
             hints.append(hint)
         return hints
+    
+def play(words):
+    # Create list of all possible answers (words that the hidden word could actually be)
+    answers = []
+    with open('data/valid_answers.txt') as answersText:
+        answers = answersText.readlines()
+
+    # Run tests on desired AI.
+    # Change first arg for number of games
+    # Change third arg for number of words in game (1 for wordle, 4 for quordle, etc)
+    # Change last arg for the AI you want to test.
+    print(len(words))
+    res = PlayAGame(words, answers, len(words), AI.CommonLetterSpots)
 
 
-def play():
+    return "number of guesses: "+ str(res)
+
+
+def playOriginal():
     # Keeping track of time, do not want to make program too long.
     tic = time.time()
 
@@ -94,8 +110,8 @@ def play():
 # ai - the AI type that we want to play
 # RETURNS:
 # numGuesses - the number of guesses needed to find the word.
-def PlayAGame(answers, numWords, ai):
-    game = Quordle(PickRandomWords(answers, numWords), numWords) # make new game
+def PlayAGame(hiddenWords, answers, numWords, ai):
+    game = Quordle(hiddenWords, numWords) # make new game
     myAI = ai(answers, numWords); # make new AI
     allGuesses = []
     numGuesses = 0
@@ -104,6 +120,8 @@ def PlayAGame(answers, numWords, ai):
 
     print("\nHIDDEN WORDS ARE: ", game.answers)
     while numCorrect < numWords:
+        print("NUM CORRECT : " + str(numCorrect))
+        print("NUM WORDS " + str(numWords))
         word = myAI.pickWord() # AI picks a word
         numGuesses += 1
         print("PICKED WORD: ", word, " out of ", len(myAI.poolToChooseFrom)+1, " words")
@@ -152,7 +170,7 @@ def PlayManyGames(numGames, answers, numWords, ai):
     while j < numGames:
         newAnswers = answers.copy() # need to make new answers each time, otherwise
                                     # guessPools stay small.
-        temp = PlayAGame(newAnswers, numWords, ai)
+        temp = PlayAGame(PickRandomWords(answers, numWords), newAnswers, numWords, ai)
         if temp > worst: # updates worst if necessary.
             worst = temp
         if temp < best: # updates best if necessary.
@@ -189,7 +207,11 @@ def PercentageOfLetters(words, letter, spot):
 
 # FUNCTION: PickRandomWords
 # function used to pick random words if user doesn't want to select any
-def PickRandomWords(words, n):
+def PickRandomWords(n):
+    words = []
+    with open('data/valid_answers.txt') as answersText:
+        words = answersText.readlines()
+
     answers = []
 
     i = 0
