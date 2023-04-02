@@ -1,0 +1,12 @@
+body {
+    background-color: grey;
+}
+
+td {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 28px;
+    width: 40px;
+    text-align: center;
+    text-shadow: 3px 3px black;
+}

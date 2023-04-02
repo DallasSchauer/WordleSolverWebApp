@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-wdidth, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}">
+    <title>Flask Application</title>
+</head>
+
+<body>
+    <h1>Results from the game:</h1>
+
+    <table>
+    <tr>
+        <td>&emsp;</td>
+        {% for w in range(0, results[3]) %}
+            {% for c in hiddenWords[w]%}
+                <td>{{c}}</td>
+            {% endfor %}
+            <td>&emsp;</td>
+        {% endfor %}
+    </tr>
+    {% for i in range(0, numGuesses) %} <!-- i = guess/turn number -->
+        <tr>
+        <td>{{i + 1}}</td>
+            {% for j in range(0, results[3]) %} <!-- j = game number -->
+                    {% if i == 0 %}
+                        {% for k in range(0, 5) %} <!-- k = letter index -->
+                            {% if results[1][i][j][k] == "G" %}
+                                <td style="background-color:green;">{{results[0][i][k]}}</td>
+                            {% elif results[1][i][j][k] == "Y" %}
+                                <td style="background-color:gold;">{{results[0][i][k]}}</td>
+                            {% elif results[1][i][j][k] == "B" %}
+                                <td style="background-color:black;">{{results[0][i][k]}}</td>
+                            {% else %}
+                                <td>FAIL</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{results[2][i][j]}}</td>
+                        <td>&emsp;</td>
+                    {% elif results[2][i-1][j] != 0 %}
+                        {% for k in range(0, 5) %} <!-- k = letter index -->
+                            {% if results[1][i][j][k] == "G" %}
+                                <td style="background-color:green;">{{results[0][i][k]}}</td>
+                            {% elif results[1][i][j][k] == "Y" %}
+                                <td style="background-color:gold;">{{results[0][i][k]}}</td>
+                            {% elif results[1][i][j][k] == "B" %}
+                                <td style="background-color:black;">{{results[0][i][k]}}</td>
+                            {% else %}
+                                <td>FAIL</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{results[2][i][j]}}</td>
+                        <td>&emsp;</td>
+                    {% else %}
+                        {% for k in range(0, 7) %}
+                            <td>&emsp;</td>
+                        {% endfor %}
+                    {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+
+</html>

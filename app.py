@@ -35,11 +35,13 @@ def defineSubmit():
         for w in words:
             if len(w) == 6:
                 print("ADDING " + w[:5])
-                r = w[:5] 
+                r = w[:5]
                 r += '\n'
                 args.append(r)
 
-        return quordle.play(args)
+        res = quordle.play(args)
+        return render_template('game.html', results = res, numGuesses = len(res[0]), 
+                               hiddenWords = args)
 
     else:
         words = request.args.get('words').split('\n')
@@ -53,7 +55,8 @@ def defineSubmit():
                 r += '\n'
                 args.append(r)
 
-        return quordle.play(args)
+        res = quordle.play(args)
+        return render_template('game.html', results = res)
     
 
 

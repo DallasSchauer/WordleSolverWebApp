@@ -57,7 +57,7 @@ def play(words):
     res = PlayAGame(words, answers, len(words), AI.CommonLetterSpots)
 
 
-    return "number of guesses: "+ str(res)
+    return res
 
 
 def playOriginal():
@@ -114,6 +114,8 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
     game = Quordle(hiddenWords, numWords) # make new game
     myAI = ai(answers, numWords); # make new AI
     allGuesses = []
+    allHints = []
+    allTotals = []
     numGuesses = 0
     numCorrect = 0
     print("--------------------------")
@@ -128,24 +130,29 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
 
         if word in game.answers: # exit if its correct (change for >1 word)
             numCorrect += 1
-            allGuesses.append(word.upper())
+            allGuesses.append(word[:5].upper())
         else:
-            allGuesses.append(word)
+            allGuesses.append(word[:5].upper())
 
 
         hint = game.evaluateGuess(word[:5]) # evaluate latest guess
+        allHints.append(hint)
         print(game.answers)
         print(hint)
         interpretationsCount = 0
+        interpretations = []
         while interpretationsCount < numWords:
             myAI.interpretHint(hint[interpretationsCount], word[:5],
             myAI.guessPools[interpretationsCount]) # narrow down AI's guess pools
-            print(interpretationsCount, ": ", len(myAI.guessPools[interpretationsCount]))
+            leftInPool = len(myAI.guessPools[interpretationsCount])
+            print(interpretationsCount, ": ", str(leftInPool))
+            interpretations.append(leftInPool)
             interpretationsCount += 1
+        allTotals.append(interpretations)
     print ("ALL GUESSES: ", allGuesses)
     print("GOT ALL WORDS IN :", numGuesses, " GUESSES.")
     print("--------------------------")
-    return numGuesses
+    return [allGuesses, allHints, allTotals, numWords]
 
 
 # FUNCTION: PLAYMANYGAMES
@@ -171,13 +178,13 @@ def PlayManyGames(numGames, answers, numWords, ai):
         newAnswers = answers.copy() # need to make new answers each time, otherwise
                                     # guessPools stay small.
         temp = PlayAGame(PickRandomWords(answers, numWords), newAnswers, numWords, ai)
-        if temp > worst: # updates worst if necessary.
+        if temp[0] > worst: # updates worst if necessary.
             worst = temp
-        if temp < best: # updates best if necessary.
+        if temp[0] < best: # updates best if necessary.
             best = temp
-        if temp <= goal: # adds a W if the AI won in time.
+        if temp[0] <= goal: # adds a W if the AI won in time.
             wins += 1
-        count += temp # update total number of guesses to calc avg later
+        count += temp[0] # update total number of guesses to calc avg later
         j += 1
         print("FINISHED GAME NUMBER: ", j)
 
