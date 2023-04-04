@@ -28,35 +28,50 @@ def randomWords():
 
 @app.route('/pick', methods = ['POST', 'GET'])
 def defineSubmit():
+    print("HELLO PICK")
     if request.method == 'POST':
+        answers = []
+        with open('data/valid_answers.txt') as answersText:
+            answers = answersText.readlines()
+
         words = request.form['words'].split('\n')
         args = []
 
         for w in words:
-            if len(w) == 6:
-                print("ADDING " + w[:5])
-                r = w[:5]
+            if len(w) == 6 :
+                r = w[:5].lower()
                 r += '\n'
-                args.append(r)
+                print("ADDING " + r)
+                if r in answers:
+                    print(r + " in answers")
+                    args.append(r)
+                else:
+                    print(r + " NOT in answers")
+            else:
+                print(w + " NOT 5 letters.")
 
         res = quordle.play(args)
         return render_template('game.html', results = res, numGuesses = len(res[0]), 
                                hiddenWords = args)
 
     else:
-        words = request.args.get('words').split('\n')
+        answers = []
+        with open('data/valid_answers.txt') as answersText:
+            answers = answersText.readlines()
 
+        words = request.form['words'].split('\n')
         args = []
 
         for w in words:
-            if len(w) == 6:
+            if len(w) == 6 and w in answers:
                 print("ADDING " + w[:5])
-                r = w[:5] 
+                r = w[:5].lower()
                 r += '\n'
                 args.append(r)
 
         res = quordle.play(args)
-        return render_template('game.html', results = res)
+        return render_template('game.html', results = res, numGuesses = len(res[0]), 
+                               hiddenWords = args)
     
 
 
@@ -73,4 +88,5 @@ def defineWords(words):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    print("HELLO")
+    app.run(debug=True)
