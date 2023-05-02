@@ -8,3 +8,6 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
 list of guesses left)
 - make website banner (w/ homepage functionality)
 - make second mode (lots of games sim) w/ different submit and results page
+
+# DONE
+- Make dictionary to make distribution

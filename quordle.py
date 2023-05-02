@@ -80,7 +80,7 @@ def playOriginal():
     # Change first arg for number of games
     # Change third arg for number of words in game (1 for wordle, 4 for quordle, etc)
     # Change last arg for the AI you want to test.
-    res = PlayManyGames(10, answers, 4, AI.Entropy)
+    res = PlayManyGames(100, answers, 4, AI.Entropy)
     print("\nAVERAGE NUM OF GUESSES: ", res[0], "\nWIN PERCENTAGE: ",
     res[1], "\nWORST GAME: ", res[2], "\nBEST GAME: ", res[3])
     
@@ -173,20 +173,33 @@ def PlayManyGames(numGames, answers, numWords, ai):
     worst = 0 # worst case, number should only go up
     goal = numWords + 5
 
+    map = dict()
+
     j = 0
     while j < numGames:
         newAnswers = answers.copy() # need to make new answers each time, otherwise
                                     # guessPools stay small.
-        temp = PlayAGame(PickRandomWords(answers, numWords), newAnswers, numWords, ai)
-        if temp[0] > worst: # updates worst if necessary.
-            worst = temp
-        if temp[0] < best: # updates best if necessary.
-            best = temp
-        if temp[0] <= goal: # adds a W if the AI won in time.
+        temp = PlayAGame(PickRandomWords(numWords), newAnswers, numWords, ai)
+        score = len(temp[0])
+        if score > worst: # updates worst if necessary.
+            worst = score
+        if score < best: # updates best if necessary.
+            best = score
+        if score <= goal: # adds a W if the AI won in time.
             wins += 1
-        count += temp[0] # update total number of guesses to calc avg later
+        count += score # update total number of guesses to calc avg later
+
+        if score not in map.keys():
+            map[score] = 1
+        else:
+            map[score] += 1
+
         j += 1
         print("FINISHED GAME NUMBER: ", j)
+
+    distribution = sorted(map.items())
+    for k in distribution:
+        print(str(k[0]) + ": " + str(k[1]))
 
     avg = count / numGames # find average
     winPct = wins / numGames # find win percentage

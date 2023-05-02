@@ -28,7 +28,6 @@ def randomWords():
 
 @app.route('/pick', methods = ['POST', 'GET'])
 def defineSubmit():
-    print("HELLO PICK")
     if request.method == 'POST':
         answers = []
         with open('data/valid_answers.txt') as answersText:
@@ -73,7 +72,9 @@ def defineSubmit():
         return render_template('game.html', results = res, numGuesses = len(res[0]), 
                                hiddenWords = args)
     
-
+@app.route('/original')
+def playOriginal():
+    return quordle.playOriginal()
 
 @app.route('/pickWords/<words>')
 def defineWords(words):
