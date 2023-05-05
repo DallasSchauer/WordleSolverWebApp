@@ -93,6 +93,8 @@ def playOriginal():
     ret += str(res[2])
     ret += "\nBEST GAME: "
     ret += str(res[3])
+    ret += "\nDISTRIBUTION: "
+    ret += str(res[4])
     
 
     # Report length of program
@@ -203,7 +205,7 @@ def PlayManyGames(numGames, answers, numWords, ai):
 
     avg = count / numGames # find average
     winPct = wins / numGames # find win percentage
-    return (avg, winPct, worst, best)
+    return (avg, winPct, worst, best, distribution)
 
 # FUNCTION: PERCENTAGEOFWORDS
 # funcction i used to calculate the percentage of 5-letter words each letter
