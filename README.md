@@ -3,6 +3,8 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
 
 
 # TO-DO
+- Wordle tutorial:
+    - https://www.youtube.com/watch?v=ckjRsPaWHX8
 - Make homepage:
     - 2 options for forms: single game or many game sim
     - Single game: text box for all of the words
