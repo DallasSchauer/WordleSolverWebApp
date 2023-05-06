@@ -80,7 +80,7 @@ def playOriginal():
     # Change first arg for number of games
     # Change third arg for number of words in game (1 for wordle, 4 for quordle, etc)
     # Change last arg for the AI you want to test.
-    res = PlayManyGames(100, answers, 4, AI.Entropy)
+    res = PlayManyGames(100, answers, 4, AI.CommonLetterSpots)
     print("\nAVERAGE NUM OF GUESSES: ", res[0], "\nWIN PERCENTAGE: ",
     res[1], "\nWORST GAME: ", res[2], "\nBEST GAME: ", res[3])
     

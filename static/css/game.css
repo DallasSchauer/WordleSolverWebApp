@@ -1,5 +1,5 @@
 body {
-    background-color: grey;
+    background-color: lightslategray;
 }
 
 td {
@@ -9,4 +9,5 @@ td {
     width: 40px;
     text-align: center;
     text-shadow: 3px 3px black;
+    border-radius: 5px;
 }
