@@ -2,20 +2,58 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-wdidth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <title>Flask Application</title>
 </head>
 
+<script>
+    function singleGameMode() {
+        document.getElementById("multiGame").style.display="none";
+        document.getElementById("singleGame").style.display="block";
+    }
+
+    function multiGameMode() {
+        document.getElementById("singleGame").style.display="none";
+        document.getElementById("multiGame").style.display="block";
+    }
+</script>
+
 <body>
-    <img src="../static/images/Logo.png" style="width=100vw; border = 3px solid black;" alt="Website Banner">
-    <h1>Hello World, this is from the template</h1>
+    <img src="../static/images/Logo.png" style="width:100vw;" alt="Website Banner">
+    
+    <h1 style="margin: 15px;">Choose mode:</h1>
 
-    <form action = "http://localhost:5000/pick" method = "post">
-        <textarea id="freeform" name="words" rows="16" cols="40">Enter text here...</textarea>
-        <p><input type = "submit" value = "submit" /></p>
-     </form>
+    <button style="position:absolute; left:15%;" onclick="singleGameMode()">Single Game Mode</button>
+    <button style="position:absolute; right:15%" onclick="multiGameMode()">Multi Game Mode</button>
+    
+    <br><br><br><br>
 
+    <div style="display:none;" id="singleGame">
+        <form action = "http://localhost:5000/pick" method = "post">
+            <textarea id="freeform" name="words" rows="16" cols="20" 
+            style="font-size:32px; padding:20px; margin:20px;"
+            placeholder="Enter text here.."></textarea>
+            <p><input type = "submit" value = "submit" /></p>
+        </form>
+    </div>
+        <br><br><br><br><br><br>
+
+    <div id="multiGame"></div>
+        
+     
+        <div class="footerwrapper">
+        <h1>Website Created by Dallas Schauer</h1>
+            <br>
+            <ul style="list-style:none;">
+                <li><a href="https://github.com/DallasSchauer">💻 Github 💻</a></li>
+                <li><a href="https://medium.com/@schau364">⌨️ Medium ⌨️</a></li>
+                <li>🗃 schau364@umn.edu 🗃</li>
+                <li><a href="https://www.fiverr.com/share/D04LmA"> 🎨 Logo by Aurora Design 🎨 </a></li>
+            </ul>
+           <br><br><br><br><br><br>
+        </div>
+    
      
 </body>
 
