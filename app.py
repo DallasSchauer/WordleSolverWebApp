@@ -72,9 +72,10 @@ def defineSubmit():
         return render_template('game.html', results = res, numGuesses = len(res[0]), 
                                hiddenWords = args)
     
-@app.route('/original')
+@app.route('/multigame')
 def playOriginal():
-    return quordle.playOriginal()
+    res = quordle.playOriginal()
+    return render_template('multigame.html', gameResults = res)
 
 @app.route('/pickWords/<words>')
 def defineWords(words):
