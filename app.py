@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 
 import quordle
+import AI
 
 app = Flask(__name__)
 
@@ -74,7 +75,10 @@ def defineSubmit():
     
 @app.route('/multigame')
 def playOriginal():
-    res = quordle.playOriginal()
+    answers = []
+    with open('data/valid_answers.txt') as answersText:
+        answers = answersText.readlines()
+    res = quordle.PlayManyGames(100, answers, 4, AI.CommonLetterSpots)
     return render_template('multigame.html', gameResults = res)
 
 @app.route('/pickWords/<words>')

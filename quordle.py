@@ -120,15 +120,29 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
     allTotals = []
     numGuesses = 0
     numCorrect = 0
-    print("--------------------------")
 
-    print("\nHIDDEN WORDS ARE: ", game.answers)
+    string = "--------------------------"
+
+    string += "\nHIDDEN WORDS ARE: "
+    string += str(game.answers)
+    string += "\n"
+
     while numCorrect < numWords:
-        print("NUM CORRECT : " + str(numCorrect))
-        print("NUM WORDS " + str(numWords))
+        # string += "NUM CORRECT : " 
+        # string += str(numCorrect)
+        # string += "\n"
+        # string += "NUM WORDS " 
+        # string += str(numWords)
+        # string += "\n"
+
         word = myAI.pickWord() # AI picks a word
         numGuesses += 1
-        print("PICKED WORD: ", word, " out of ", len(myAI.poolToChooseFrom)+1, " words")
+        
+        string += "PICKED WORD: "
+        string += word
+        string += " out of "
+        string += str(len(myAI.poolToChooseFrom)+1)
+        string += " words\n"
 
         if word in game.answers: # exit if its correct (change for >1 word)
             numCorrect += 1
@@ -139,22 +153,29 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
 
         hint = game.evaluateGuess(word[:5]) # evaluate latest guess
         allHints.append(hint)
-        print(game.answers)
-        print(hint)
+        string += str(hint)
+        string += "\n"
         interpretationsCount = 0
         interpretations = []
         while interpretationsCount < numWords:
             myAI.interpretHint(hint[interpretationsCount], word[:5],
             myAI.guessPools[interpretationsCount]) # narrow down AI's guess pools
             leftInPool = len(myAI.guessPools[interpretationsCount])
-            print(interpretationsCount, ": ", str(leftInPool))
+            string += str(interpretationsCount)
+            string += ": "
+            string += str(leftInPool)
+            string += "\n"
             interpretations.append(leftInPool)
             interpretationsCount += 1
         allTotals.append(interpretations)
-    print ("ALL GUESSES: ", allGuesses)
-    print("GOT ALL WORDS IN :", numGuesses, " GUESSES.")
-    print("--------------------------")
-    return [allGuesses, allHints, allTotals, numWords]
+    
+    string += "ALL GUESSES: "
+    string += str(allGuesses)
+    string += "\nGOT ALL WORDS IN :" 
+    string += str(numGuesses)
+    string += " GUESSES."
+    string += "\n--------------------------\n"
+    return [allGuesses, allHints, allTotals, numWords, string]
 
 
 # FUNCTION: PLAYMANYGAMES
@@ -174,6 +195,7 @@ def PlayManyGames(numGames, answers, numWords, ai):
     best = 99 # best case, number should only go down
     worst = 0 # worst case, number should only go up
     goal = numWords + 5
+    string = "SIMULATION ----\n"
 
     map = dict()
 
@@ -183,6 +205,7 @@ def PlayManyGames(numGames, answers, numWords, ai):
                                     # guessPools stay small.
         temp = PlayAGame(PickRandomWords(numWords), newAnswers, numWords, ai)
         score = len(temp[0])
+        string += temp[4]
         if score > worst: # updates worst if necessary.
             worst = score
         if score < best: # updates best if necessary.
@@ -197,7 +220,8 @@ def PlayManyGames(numGames, answers, numWords, ai):
             map[score] += 1
 
         j += 1
-        print("FINISHED GAME NUMBER: ", j)
+        string += "\nFINISHED GAME NUMBER: " 
+        string += str(j)
 
     distribution = sorted(map.items())
     for k in distribution:
@@ -205,7 +229,7 @@ def PlayManyGames(numGames, answers, numWords, ai):
 
     avg = count / numGames # find average
     winPct = wins / numGames # find win percentage
-    return (avg, winPct, worst, best, distribution)
+    return (avg, winPct, worst, best, distribution, string)
 
 # FUNCTION: PERCENTAGEOFWORDS
 # funcction i used to calculate the percentage of 5-letter words each letter
