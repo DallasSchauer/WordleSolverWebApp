@@ -79,7 +79,14 @@ def playOriginal():
     with open('data/valid_answers.txt') as answersText:
         answers = answersText.readlines()
     res = quordle.PlayManyGames(100, answers, 4, AI.CommonLetterSpots)
-    return render_template('multigame.html', gameResults = res)
+    xValues = []
+    yValues = []
+
+    for n in res[4]:
+        xValues.append(n[0])
+        yValues.append(n[1])
+
+    return render_template('multigame.html', gameResults = res, x = xValues, y = yValues)
 
 @app.route('/pickWords/<words>')
 def defineWords(words):

@@ -2,11 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-wdidth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/multigame.css') }}">
     <title>Flask Application</title>
 </head>
-    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+
 <body>
     <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width=100vw; border = 10px black;"
         alt="Website Banner"></a>
@@ -16,11 +19,41 @@
     <h2>AVERAGE NUM OF GUESSES : {{gameResults[0]}}</h2>
     <h2>WIN PERCENTAGE : {{gameResults[1]}}</h2>
     <h2>WORST GAME : {{gameResults[2]}}</h2>
-    <h2>BEST GAME : {{gameResults[3]}}
+    <h2>BEST GAME : {{gameResults[3]}}</h2>
     
+    <br>
+
+    <canvas id="myChart" style="width:100%;max-width:600px;color:white;"></canvas>
+
+    <script>
+        var xValues = JSON.parse('{{ x | tojson }}');
+        var yValues = JSON.parse('{{ y | tojson }}');
+        var barColors = ["red", "green","blue","orange","brown"];
+        var textColors = ["white"]
+    
+        Chart.defaults.color = '#ff0000';
+    
+        new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "Results"
+            }
+        }
+        });
+    </script>
+
     <textarea rows="1000" cols="100" 
     style="font-size:16px; padding:20px; margin:20px;">{{gameResults[5]}}</textarea>
-
 
 </body>
 
