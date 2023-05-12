@@ -11,3 +11,13 @@ td {
     text-shadow: 3px 3px black;
     border-radius: 5px;
 }
+
+h2 {
+    color: lightgrey;
+    font-family: 'Raleway',sans-serif;
+    font-size: 32px; 
+    font-weight: 800;
+    line-height: 72px; 
+    margin: 0 0 12px;
+    text-shadow: 4px 4px darkblue;
+}
