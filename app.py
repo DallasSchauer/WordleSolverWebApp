@@ -73,12 +73,46 @@ def defineSubmit():
         return render_template('game.html', results = res, numGuesses = len(res[0]), 
                                hiddenWords = args)
     
-@app.route('/multigame')
+@app.route('/multigame', methods = ['POST', 'GET'])
 def playOriginal():
     answers = []
     with open('data/valid_answers.txt') as answersText:
         answers = answersText.readlines()
     res = quordle.PlayManyGames(100, answers, 4, AI.CommonLetterSpots)
+    xValues = []
+    yValues = []
+
+    for n in res[4]:
+        xValues.append(n[0])
+        yValues.append(n[1])
+
+    return render_template('multigame.html', gameResults = res, x = xValues, y = yValues)
+
+@app.route('/multigameSimulation', methods = ['POST', 'GET'])
+def multigameSim():
+    numWords = int(request.form['numWords'])
+    numGames = int(request.form['numGames'])
+    strategy = int(request.form['strategy'])
+
+    argStrat = AI.random
+    match strategy:
+        case 2:
+            argStrat = AI.UniqueWords
+        case 3:
+            argStrat = AI.Scrabble
+        case 4:
+            argStrat = AI.CommonLetters
+        case 5:
+            argStrat = AI.CommonLetterSpots
+        case 6:
+            argStrat = AI.Entropy
+        case _:
+            argStrat = AI.random
+    
+    with open('data/valid_answers.txt') as answersText:
+        answers = answersText.readlines()
+    res = quordle.PlayManyGames(numGames, answers, numWords, argStrat)
+
     xValues = []
     yValues = []
 

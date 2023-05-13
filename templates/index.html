@@ -40,7 +40,51 @@
     </div>
         <br><br><br><br><br><br>
 
-    <div id="multiGame"></div>
+    <div style="display:none;" id="multiGame">
+        <form action = "http://localhost:5000/multigameSimulation" method = "post">
+            <label for="numWordsInput">Number of words per game:</label>
+            <input type="number" id="numWordsInput" name="numWords"
+                min="1" max="16">
+            <br>
+            <label for="numGamesInput">Number of games:</label>
+            <input type="number" id="numGamesInput" name="numGames"
+                min="1" max="1000">
+            <br>
+            <label for="strategyInput">Choose a strategy (descriptions below):</label>
+            <select id="strategyInput" name="strategy" value="1">
+                <option value="1">Random</option>
+                <option value="2">Unique Words</option>
+                <option value="3">Scrabble</option>
+                <option value="4">Common Letters</option>
+                <option value="5">Common Letter Spots</option>
+                <option value="6">Static Starters -to-&gt; Entropy</option>
+            </select>
+
+            <br>
+            <p><input type = "submit" value="submit"/></p>
+            <br>
+
+            <div class="grid-container">
+                <div class="grid-item"><h3 style="color:red;">BAD: Random</h3>
+                    <h4>Picks guess from possible remaining answers randomly.</h4></div>
+                <div class="grid-item"><h3 style="color:red;">BAD: Unique Words</h3>
+                    <h4>Picks guess from possible remaining answers prioritizing
+                        words with higher count of unique letters.</h4></div>
+                <div class="grid-item"><h3 style="color:yellow;">MEDIUM: Scrabble</h3>
+                    <h4>Picks guess from possible remaining answers prioritizing
+                        words with lower Scrabble score.</h4></div>  
+                <div class="grid-item"><h3 style="color:yellow;">MEDIUM: Common Letters</h3>
+                    <h4>Picks guess from possible remaining answers prioritizing
+                        words with more common letters.</h4></div>
+                <div class="grid-item"><h3 style="color:green;">GOOD: Common Letter Spots</h3>
+                    <h4>Picks guess from possible remaining answers prioritizing
+                        words with more common letters in letterspots they are commonly found.</h4></div>
+                <div class="grid-item"><h3 style="color:green;">GOOD: Static Starters -to-&gt; Entropy</h3>
+                    <h4>Starts every game with guesses "RAISE, CLOUT, NYMPH." to narrow down remaining answers greatly. Then, picks guess from possible remaining answers prioritizing information gain, or, how useful
+                        each word will be in narrowing down the remaining answers further.</h4></div>
+            </div>
+        </form>
+    </div>
         
      
         <div class="footerwrapper">

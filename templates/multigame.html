@@ -28,7 +28,9 @@
     <script>
         var xValues = JSON.parse('{{ x | tojson }}');
         var yValues = JSON.parse('{{ y | tojson }}');
-        var barColors = ["red", "green","blue","orange","brown"];
+        var barColors = ["#34eb43", "#bce33b",
+                        "#f5f236", "#e3c040",
+                        "#f77f23", "#b8560b", "#ed5209"];
         var textColors = ["white"]
     
         Chart.defaults.global.defaultFontColor = "#fff";
@@ -52,7 +54,7 @@
         });
     </script>
 
-    <textarea rows="50" cols="100" 
+    <textarea rows="30" cols="100" 
     style="font-size:16px; padding:20px; margin:20px;">{{gameResults[5]}}</textarea>
 
     <div class="footerwrapper">

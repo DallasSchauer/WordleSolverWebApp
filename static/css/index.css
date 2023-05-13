@@ -13,6 +13,42 @@ h1 {
     text-shadow: 4px 4px black;
 }
 
+h2 {
+    color: white;
+    font-family: 'Raleway',sans-serif;
+    font-size: 32px; 
+    font-weight: 800;
+    line-height: 72px; 
+    margin: 0 0 12px;
+    text-shadow: 4px 4px darkblue;
+}
+
+h3 {
+    color: lightgrey;
+    font-family: 'Raleway',sans-serif;
+    font-size: 24px; 
+    font-weight: 800;
+    text-shadow: 3px 3px darkblue;
+}
+
+h4 {
+    color: lightgrey;
+    font-family: 'Raleway',sans-serif;
+    font-size: 18px; 
+    font-weight: 800;
+    text-shadow: 2px 2px darkblue;
+}
+
+label {
+    color: white;
+    font-family: 'Raleway',sans-serif;
+    font-size: 32px; 
+    font-weight: 800;
+    line-height: 72px; 
+    margin: 0 0 12px;
+    text-shadow: 4px 4px darkblue;
+}
+
 button {
   background: darkcyan;
   border-radius: 999px;
@@ -35,6 +71,28 @@ button {
   border: 0;
   margin: 15px;
 }
+
+.wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+  }
+
+.wrapper-child {
+    margin: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+  }
+
+.grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
 
 .footerwrapper h1 {
     color:white;
