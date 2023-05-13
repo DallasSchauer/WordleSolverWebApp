@@ -31,7 +31,7 @@
         var barColors = ["red", "green","blue","orange","brown"];
         var textColors = ["white"]
     
-        Chart.defaults.color = '#ff0000';
+        Chart.defaults.global.defaultFontColor = "#fff";
     
         new Chart("myChart", {
         type: "bar",
@@ -52,9 +52,20 @@
         });
     </script>
 
-    <textarea rows="1000" cols="100" 
+    <textarea rows="50" cols="100" 
     style="font-size:16px; padding:20px; margin:20px;">{{gameResults[5]}}</textarea>
 
+    <div class="footerwrapper">
+        <h1>Website Created by Dallas Schauer</h1>
+            <br>
+            <ul style="list-style:none;">
+                <li><a href="https://github.com/DallasSchauer">💻 Github 💻</a></li>
+                <li><a href="https://medium.com/@schau364">⌨️ Medium ⌨️</a></li>
+                <li>🗃 schau364@umn.edu 🗃</li>
+                <li><a href="https://www.fiverr.com/share/D04LmA"> 🎨 Logo by Aurora Design 🎨 </a></li>
+            </ul>
+           <br><br><br><br><br><br>
+        </div>
 </body>
 
 </html>

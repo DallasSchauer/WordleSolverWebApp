@@ -1,5 +1,6 @@
 body {
     background-color: #534bb4;
+    color: white;
 }
 
 td {
@@ -13,7 +14,7 @@ td {
 }
 
 h2 {
-    color: lightgrey;
+    color: white;
     font-family: 'Raleway',sans-serif;
     font-size: 32px; 
     font-weight: 800;
