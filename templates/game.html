@@ -11,59 +11,62 @@
     <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width=100vw; border = 10px black;"
          alt="Website Banner"></a>
     <h2>Results from the game:</h2>
-
-    <div style="overflow:visible;">
-        <table>
-        <tr>
-            <td>&emsp;</td>
-            {% for w in range(0, results[3]) %}
-                {% for c in hiddenWords[w]%}
-                    <td>{{c}}</td>
-                {% endfor %}
-                <td>&emsp;</td>
-            {% endfor %}
-        </tr>
+    
+    <div class="grid-container">
+        {% for g in range(0, results[3]) %} 
+            <div class="grid-child">
+                <table>
+                    <tr>
+                        <td>&emsp;</td>
+                        {% for c in hiddenWords[g] %}
+                            <td>{{c}}</td>
+                        {% endfor %}
+                        <td>&emsp;</td>
+                    </tr>
         {% for i in range(0, numGuesses) %} <!-- i = guess/turn number -->
             <tr>
             <td>{{i + 1}}</td>
-                {% for j in range(0, results[3]) %} <!-- j = game number -->
                         {% if i == 0 %}
                             {% for k in range(0, 5) %} <!-- k = letter index -->
-                                {% if results[1][i][j][k] == "G" %}
+                                {% if results[1][i][g][k] == "G" %}
                                     <td style="background-color:green;">{{results[0][i][k]}}</td>
-                                {% elif results[1][i][j][k] == "Y" %}
+                                {% elif results[1][i][g][k] == "Y" %}
                                     <td style="background-color:gold;">{{results[0][i][k]}}</td>
-                                {% elif results[1][i][j][k] == "B" %}
+                                {% elif results[1][i][g][k] == "B" %}
                                     <td style="background-color:black;">{{results[0][i][k]}}</td>
                                 {% else %}
                                     <td>FAIL</td>
                                 {% endif %}
                             {% endfor %}
-                            <td>{{results[2][i][j]}}</td>
+                            <td>{{results[2][i][g]}}</td>
                             <td>&emsp;</td>
-                        {% elif results[2][i-1][j] != 0 %}
+                        {% elif results[2][i-1][g] != 0 %}
                             {% for k in range(0, 5) %} <!-- k = letter index -->
-                                {% if results[1][i][j][k] == "G" %}
+                                {% if results[1][i][g][k] == "G" %}
                                     <td style="background-color:green;">{{results[0][i][k]}}</td>
-                                {% elif results[1][i][j][k] == "Y" %}
+                                {% elif results[1][i][g][k] == "Y" %}
                                     <td style="background-color:gold;">{{results[0][i][k]}}</td>
-                                {% elif results[1][i][j][k] == "B" %}
+                                {% elif results[1][i][g][k] == "B" %}
                                     <td style="background-color:black;">{{results[0][i][k]}}</td>
                                 {% else %}
                                     <td>FAIL</td>
                                 {% endif %}
                             {% endfor %}
-                            <td>{{results[2][i][j]}}</td>
+                            <td>{{results[2][i][g]}}</td>
                             <td>&emsp;</td>
                         {% else %}
                             {% for k in range(0, 7) %}
                                 <td>&emsp;</td>
                             {% endfor %}
                         {% endif %}
+                    </tr>
                 {% endfor %}
-            </tr>
-        {% endfor %}
-        </table>
+                </table>
+                </div>
+            {% endfor %}
+            
+    </div>
+
     <div>
         <div class="footerwrapper">
             <h1>Website Created by Dallas Schauer</h1>

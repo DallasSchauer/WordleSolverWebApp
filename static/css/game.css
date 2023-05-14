@@ -23,6 +23,17 @@ h2 {
     text-shadow: 4px 4px darkblue;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+}
+
+.grid-child {
+    margin: 2px;
+    padding: 2px;
+}
+
 .footerwrapper h1 {
     color:white;
     background-color:black;

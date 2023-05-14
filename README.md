@@ -3,16 +3,11 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
 
 
 # NEXT TIME
-add multigame parameters to results page and better form styling
+- better form styling + animations?
 
 # TO-DO
 - Wordle tutorial:
     - https://www.youtube.com/watch?v=ckjRsPaWHX8
-
-- Make 2 HTML pages with results
-    - Single game: win/fail, all guesses, all pools, highlight which pool is chosen
-    - Multi-game: avg num of guesses, win percentage, worst game, best game, distribution graph, output logs
-
 
 # DONE
 - Make dictionary to make distribution
@@ -21,3 +16,6 @@ add multigame parameters to results page and better form styling
     - Single game: text box for all of the words
     - Multiple games: number of words per game, strategy (w/ descriptions)
 - make website banner (w/ homepage functionality)
+- Make 2 HTML pages with results
+    - Single game: win/fail, all guesses, all pools, highlight which pool is chosen
+    - Multi-game: avg num of guesses, win percentage, worst game, best game, distribution graph, output logs
