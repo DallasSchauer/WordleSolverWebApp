@@ -13,49 +13,80 @@
 <body>
     <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width=100vw; border = 10px black;"
         alt="Website Banner"></a>
-
+    
+    <h2 style="background-color: #3b1757; margin: 5px;">
+        Games: {{webNumGames}} / Words per Game: {{webNumWords}} / Strategy: {{webStrategy}}</h2>
+    <br>
+    
     <h1>Results</h1>
 
-    <h2>AVERAGE NUM OF GUESSES : {{gameResults[0]}}</h2>
-    <h2>WIN PERCENTAGE : {{gameResults[1]}}</h2>
-    <h2>WORST GAME : {{gameResults[2]}}</h2>
-    <h2>BEST GAME : {{gameResults[3]}}</h2>
-    
-    <br>
+    <div class="grid-container">
+        <div class="grid-child">
+            <h2>Average Number of Guesses : {{gameResults[0]}}</h2>
+            <h2>Win Percentage : {{gameResults[1]}}</h2>
+            <h2>Best Game : {{gameResults[3]}}</h2>
+            <h2>Worst Game : {{gameResults[2]}}</h2>
+            
+            
+            <br>
 
-    <canvas id="myChart" style="width:100%;max-width:600px;color:white;"></canvas>
+            <canvas id="myChart" style="width:100%;max-width:600px;color:white;"></canvas>
 
-    <script>
-        var xValues = JSON.parse('{{ x | tojson }}');
-        var yValues = JSON.parse('{{ y | tojson }}');
-        var barColors = ["#34eb43", "#bce33b",
-                        "#f5f236", "#e3c040",
-                        "#f77f23", "#b8560b", "#ed5209"];
-        var textColors = ["white"]
-    
-        Chart.defaults.global.defaultFontColor = "#fff";
-    
-        new Chart("myChart", {
-        type: "bar",
-        data: {
-            labels: xValues,
-            datasets: [{
-            backgroundColor: barColors,
-            data: yValues
-            }]
-        },
-        options: {
-            legend: {display: false},
-            title: {
-            display: true,
-            text: "Results"
-            }
-        }
-        });
-    </script>
-
-    <textarea rows="30" cols="100" 
-    style="font-size:16px; padding:20px; margin:20px;">{{gameResults[5]}}</textarea>
+            <script>
+                var xValues = JSON.parse('{{ x | tojson }}');
+                var yValues = JSON.parse('{{ y | tojson }}');
+                var barColors = ["#34eb43", "#bce33b",
+                                "#f5f236", "#e3c040",
+                                "#f77f23", "#b8560b", "#ed5209"];
+                var textColors = ["white"]
+            
+                Chart.defaults.global.defaultFontColor = "#fff";
+            
+                new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                    display: true,
+                    text: "Number of Games by Guess Number Distribution"
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Number of Guesses'
+                            }
+                        }],
+                        yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {if (value % 1 === 0) {return value;}}
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Number of Games'
+                        }
+                    }]
+                    }
+                }
+                });
+            </script>
+        </div>
+        
+        <div class="grid-child">
+            <textarea rows="30" cols="100" 
+            style="font-size:16px; padding:20px; margin:20px;">{{gameResults[5]}}</textarea>
+        </div>
+    </div>
 
     <div class="footerwrapper">
         <h1>Website Created by Dallas Schauer</h1>

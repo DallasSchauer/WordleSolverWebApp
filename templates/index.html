@@ -20,7 +20,8 @@
 </script>
 
 <body>
-    <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width=100vw; border = 10px black;"
+    <div>
+    <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width:100vw; border = 10px black;"
         alt="Website Banner"></a>
     
     <h1 style="margin: 15px;">Choose mode:</h1>
@@ -51,7 +52,8 @@
                 min="1" max="1000">
             <br>
             <label for="strategyInput">Choose a strategy (descriptions below):</label>
-            <select id="strategyInput" name="strategy" value="1">
+            <select id="strategyInput" name="strategy">
+                <option value="0"> --Select Strategy--</option>
                 <option value="1">Random</option>
                 <option value="2">Unique Words</option>
                 <option value="3">Scrabble</option>
@@ -85,7 +87,7 @@
             </div>
         </form>
     </div>
-        
+    </div>   
      
         <div class="footerwrapper">
         <h1>Website Created by Dallas Schauer</h1>

@@ -22,3 +22,29 @@ h2 {
     margin: 0 0 12px;
     text-shadow: 4px 4px darkblue;
 }
+
+.footerwrapper h1 {
+    color:white;
+    background-color:black;
+}
+
+.footerwrapper ul {
+    background-color:dimgrey;
+}   
+
+.footerwrapper a {
+    background-color:dimgrey;
+}
+
+.footerwrapper li {
+    color:black;
+    font-size:32px;
+    font-family: 'Raleway', sans-serif;
+    background-color:dimgrey;
+}
+
+.footerwrapper {
+    background-color:dimgrey;
+    width:100vw;
+    position: relative;
+}

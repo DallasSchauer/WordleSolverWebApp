@@ -56,6 +56,17 @@ button {
   margin: 15px;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.grid-child {
+    margin: 20px;
+    padding: 10px;
+}
+
 .footerwrapper h1 {
     color:white;
     background-color:black;

@@ -94,20 +94,27 @@ def multigameSim():
     numGames = int(request.form['numGames'])
     strategy = int(request.form['strategy'])
 
-    argStrat = AI.random
+    argStrat = AI.AI
+    stratStr = "Random"
     match strategy:
         case 2:
             argStrat = AI.UniqueWords
+            stratStr = "Unique Words"
         case 3:
             argStrat = AI.Scrabble
+            stratStr = "Scrabble"
         case 4:
             argStrat = AI.CommonLetters
+            stratStr = "Common Letters"
         case 5:
             argStrat = AI.CommonLetterSpots
+            stratStr = "Common Letter Spots"
         case 6:
             argStrat = AI.Entropy
+            stratStr = "Static Starters -to-> Entropy"
         case _:
-            argStrat = AI.random
+            argStrat = AI.AI
+            stratStr = "Random"
     
     with open('data/valid_answers.txt') as answersText:
         answers = answersText.readlines()
@@ -120,7 +127,8 @@ def multigameSim():
         xValues.append(n[0])
         yValues.append(n[1])
 
-    return render_template('multigame.html', gameResults = res, x = xValues, y = yValues)
+    return render_template('multigame.html', gameResults = res, x = xValues, y = yValues,
+                           webNumWords = numWords, webNumGames = numGames, webStrategy = stratStr)
 
 @app.route('/pickWords/<words>')
 def defineWords(words):
