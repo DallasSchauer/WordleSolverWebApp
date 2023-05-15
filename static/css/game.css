@@ -6,8 +6,8 @@ body {
 td {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     color: white;
-    font-size: 28px;
-    width: 40px;
+    font-size: 36px;
+    width: 64px;
     text-align: center;
     text-shadow: 3px 3px black;
     border-radius: 5px;
@@ -25,7 +25,7 @@ h2 {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 2px;
 }
 

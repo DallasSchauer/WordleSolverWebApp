@@ -82,16 +82,39 @@ button {
     margin: 10px;
 }
 
+.submit-button {
+    background: darkcyan;
+    border-radius: 999px;
+    box-shadow: darkcyan 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+    margin: 15px;
+  }
+
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     column-gap:15px;
     row-gap:15px;
     padding: 10px;
   }
 
 .grid-item {
-    padding: 20px;
+    padding: 10px;
     font-size: 30px;
     text-align: center;
     background-color: #3b1757;

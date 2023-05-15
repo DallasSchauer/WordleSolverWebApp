@@ -3,6 +3,7 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
 
 
 # NEXT TIME
+- randomize button for inputs (both single and multi)
 - better form styling + animations?
 
 # TO-DO
