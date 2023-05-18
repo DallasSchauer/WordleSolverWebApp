@@ -7,6 +7,7 @@
     <title>Flask Application</title>
 </head>
 
+
 <body>
     <a href="{{ url_for('index') }}"><img src="../static/images/Logo.png" style="width=100vw; border = 10px black;"
          alt="Website Banner"></a>
@@ -29,11 +30,11 @@
                         {% if i == 0 %}
                             {% for k in range(0, 5) %} <!-- k = letter index -->
                                 {% if results[1][i][g][k] == "G" %}
-                                    <td style="background-color:green;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:green;">{{results[0][i][k]}}</td>
                                 {% elif results[1][i][g][k] == "Y" %}
-                                    <td style="background-color:gold;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:gold;">{{results[0][i][k]}}</td>
                                 {% elif results[1][i][g][k] == "B" %}
-                                    <td style="background-color:black;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:black;">{{results[0][i][k]}}</td>
                                 {% else %}
                                     <td>FAIL</td>
                                 {% endif %}
@@ -43,11 +44,11 @@
                         {% elif results[2][i-1][g] != 0 %}
                             {% for k in range(0, 5) %} <!-- k = letter index -->
                                 {% if results[1][i][g][k] == "G" %}
-                                    <td style="background-color:green;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:green;">{{results[0][i][k]}}</td>
                                 {% elif results[1][i][g][k] == "Y" %}
-                                    <td style="background-color:gold;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:gold;">{{results[0][i][k]}}</td>
                                 {% elif results[1][i][g][k] == "B" %}
-                                    <td style="background-color:black;">{{results[0][i][k]}}</td>
+                                    <td class="letter" style="background-color:black;">{{results[0][i][k]}}</td>
                                 {% else %}
                                     <td>FAIL</td>
                                 {% endif %}
