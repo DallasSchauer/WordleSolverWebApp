@@ -8,6 +8,8 @@
 </head>
 
 <script>
+    var answers = {{ ans|safe }};
+
     function singleGameMode() {
         document.getElementById("multiGame").style.display="none";
         document.getElementById("singleGame").style.display="block";
@@ -16,6 +18,32 @@
     function multiGameMode() {
         document.getElementById("singleGame").style.display="none";
         document.getElementById("multiGame").style.display="block";
+    }
+
+    function randomizeSingle() {
+        var words = document.getElementById("wordsInput");
+
+        var newWords = [];
+        var n = (Math.floor(Math.random() *  15 + 1));
+
+        for (let i = 0; i < n; i++) {
+            str = "";
+            str += answers[Math.floor(Math.random() * 1000 + 1)];
+            newWords += str;
+        }
+
+        words.value = newWords;
+    }
+
+    function randomizeMultiple() {
+        var numWords = document.getElementById("numWordsInput");
+        var numGames = document.getElementById("numGamesInput");
+        var strategy = document.getElementById("strategyInput");
+
+
+        numWords.value = (Math.floor(Math.random() * 15 + 1));
+        numGames.value = (Math.floor(Math.random() * 499 + 1));
+        strategy.value = (Math.floor(Math.random() * 5 + 1));
     }
 </script>
 
@@ -32,8 +60,9 @@
     <br><br><br><br>
 
     <div style="display:none;" id="singleGame">
+        <button class="random-button" onclick="randomizeSingle()">🎲 Randomize 🎲</button>
         <form action = "http://localhost:5000/pick" method = "post">
-            <textarea id="freeform" name="words" rows="16" cols="20" 
+            <textarea id="wordsInput" name="words" rows="16" cols="20" 
             style="font-size:32px; padding:20px; margin:20px;"
             placeholder="Enter text here.."></textarea>
             <p><input type = "submit" value = "submit" class="submit-button"/></p>
@@ -42,6 +71,7 @@
         <br><br><br><br><br><br>
 
     <div style="display:none;" id="multiGame">
+        <button class="random-button" onclick="randomizeMultiple()">🎲 Randomize 🎲</button>
         <form action = "http://localhost:5000/multigameSimulation" method = "post">
             <label for="numWordsInput">Number of words per game:</label>
             <input type="number" id="numWordsInput" name="numWords"
@@ -49,7 +79,7 @@
             <br>
             <label for="numGamesInput">Number of games:</label>
             <input type="number" id="numGamesInput" name="numGames"
-                min="1" max="1000">
+                min="1" max="500">
             <br>
             <label for="strategyInput">Choose a strategy (descriptions below):</label>
             <select id="strategyInput" name="strategy">

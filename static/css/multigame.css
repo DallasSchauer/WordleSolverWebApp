@@ -117,7 +117,7 @@ button {
     content: "";
     width:75px;
     height:75px;
-    border: 15px solid #ddd;
+    border: 15px solid gold;
     border-top-color: #009578;
     border-radius: 50%;
     animation: loading .75s ease infinite;

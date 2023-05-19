@@ -3,8 +3,9 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
 
 
 # NEXT TIME
-- randomize button for inputs (both single and multi)
-- better form styling + animations?
+- Add loading animation to all pages
+- Make video??????
+
 
 # DONE
 - Make dictionary to make distribution
@@ -18,3 +19,5 @@ Python implementation of Wordle variants and accompanying AI strategies to minim
     - Multi-game: avg num of guesses, win percentage, worst game, best game, distribution graph, output logs
 - Wordle tutorial:
     - https://www.youtube.com/watch?v=ckjRsPaWHX8
+- better form styling + animations
+- randomize button for inputs (both single and multi)

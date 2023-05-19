@@ -121,7 +121,7 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
     numGuesses = 0
     numCorrect = 0
 
-    string = "--------------------------"
+    string = "\n\n--------------------------"
 
     string += "\nHIDDEN WORDS ARE: "
     string += str(game.answers)
@@ -171,7 +171,7 @@ def PlayAGame(hiddenWords, answers, numWords, ai):
     
     string += "ALL GUESSES: "
     string += str(allGuesses)
-    string += "\nGOT ALL WORDS IN :" 
+    string += "\nGOT ALL WORDS IN : " 
     string += str(numGuesses)
     string += " GUESSES."
     string += "\n--------------------------\n"
@@ -195,7 +195,9 @@ def PlayManyGames(numGames, answers, numWords, ai):
     best = 99 # best case, number should only go down
     worst = 0 # worst case, number should only go up
     goal = numWords + 5
-    string = "SIMULATION ----\n"
+    string = "------------------------------------------\n"
+    string += "---------------SIMULATION ----------------\n"
+    string += "------------------------------------------\n"
 
     map = dict()
 
@@ -224,8 +226,6 @@ def PlayManyGames(numGames, answers, numWords, ai):
         string += str(j)
 
     distribution = sorted(map.items())
-    for k in distribution:
-        print(str(k[0]) + ": " + str(k[1]))
 
     avg = count / numGames # find average
     winPct = wins / numGames # find win percentage

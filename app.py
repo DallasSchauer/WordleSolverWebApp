@@ -2,12 +2,16 @@ from flask import Flask, render_template, url_for, request, redirect
 
 import quordle
 import AI
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    answers = []
+    with open('data/valid_answers.txt') as answersText:
+         answers = answersText.readlines()
+    return render_template('index.html', ans = answers)
 
 @app.route('/success/<name>')
 def success(name):
